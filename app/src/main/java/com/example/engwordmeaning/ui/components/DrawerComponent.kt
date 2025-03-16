@@ -1,8 +1,12 @@
 package com.example.engwordmeaning.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -13,8 +17,8 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.ui.Modifier
 import com.example.engwordmeaning.R
+import androidx.compose.ui.platform.LocalConfiguration
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -23,11 +27,39 @@ fun DrawerComponent(
     scaffoldState: DrawerState,
     coroutineScope: CoroutineScope
 ) {
-    ModalDrawerSheet {
-        Text(stringResource(R.string.navigation), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.padding(16.dp))
+    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
+    val drawerWidth = screenWidth * (5f / 6f)
 
-        Divider()
+    ModalDrawerSheet(
+        modifier = Modifier
+            .width(drawerWidth)
+            .fillMaxHeight()
+    ) {
+        // ✅ Colored Header Section
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.primaryContainer)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.Start
+        ) {
+            Text(
+                text = stringResource(R.string.navigation),
+                style = MaterialTheme.typography.headlineMedium,
+                color = MaterialTheme.colorScheme.onPrimaryContainer
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = stringResource(R.string.app_description),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onPrimaryContainer
+            )
+        }
 
+        Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+        ////// navigation
         DrawerItem(stringResource(R.string.main_screen), navController, scaffoldState, coroutineScope, "main", Icons.Filled.Home)
         DrawerItem(stringResource(R.string.favorites_screen), navController, scaffoldState, coroutineScope, "favorites", Icons.Filled.Favorite)
         DrawerItem(stringResource(R.string.settings_screen), navController, scaffoldState, coroutineScope, "settings", Icons.Filled.Settings)
@@ -42,19 +74,18 @@ fun DrawerItem(
     scaffoldState: DrawerState,
     coroutineScope: CoroutineScope,
     route: String,
-    icon: androidx.compose.ui.graphics.vector.ImageVector
+    icon: ImageVector
 ) {
-    TextButton(
+    val isSelected = navController.currentDestination?.route == route
+
+    NavigationDrawerItem(
+        label = { Text(text, style = MaterialTheme.typography.bodyLarge) },
+        icon = { Icon(imageVector = icon, contentDescription = text) },
+        selected = isSelected,
         onClick = {
             coroutineScope.launch { scaffoldState.close() }
             navController.navigate(route)
         },
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)
-    ) {
-        Row {
-            Icon(icon, contentDescription = text)
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(text, style = MaterialTheme.typography.bodyLarge)
-        }
-    }
+        modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
+    )
 }

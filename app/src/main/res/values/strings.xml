@@ -13,7 +13,7 @@
     <string name="open_drawer">Drawer</string>
     <string name="select_language">Select Language</string>
     <string name="dark_mode">Dark Mode</string>
-    <string name="app_description">An English-to-English dictionary for finding word meanings.</string>
+    <string name="app_description">A simple Eng-Eng dictionary mobile app fueled by Kotlin.</string>
     <string name="app_version">Version 1.0.0</string>
     <string name="version_info">Version Information</string>
     <string name="features">App Features</string>
@@ -31,4 +31,5 @@
     <string name="word_not_found">Word not found.</string>
     <string name="network_error">Network error. Please check your internet connection.</string>
     <string name="server_error">Word not found or Server error. Please try again later.</string>
+    <string name="unexpected_error">Oops! Something went wrong. Please try again.</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.engwordmeaning.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -24,7 +25,6 @@ fun SettingsScreen(
     val coroutineScope = rememberCoroutineScope()
     val languages = listOf("English", "Vietnamese")
     var expanded by remember { mutableStateOf(false) }
-    var forceRecompose by remember { mutableIntStateOf(0) }
 
     ModalNavigationDrawer(
         drawerState = scaffoldState,
@@ -37,11 +37,13 @@ fun SettingsScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
-                    .padding(16.dp)
+                    .padding(24.dp),
+                verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                // Dark Mode Toggle
+                ////// Dark mode
                 Row(
                     modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(stringResource(R.string.dark_mode), style = MaterialTheme.typography.bodyLarge)
@@ -51,27 +53,33 @@ fun SettingsScreen(
                     )
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Divider(modifier = Modifier.padding(vertical = 8.dp))
 
-                // Language Selection Dropdown
-                Text(stringResource(R.string.select_language), style = MaterialTheme.typography.bodyLarge)
-                Box {
-                    Button(onClick = { expanded = true }) {
-                        Text(selectedLanguage)
-                    }
-                    DropdownMenu(
-                        expanded = expanded,
-                        onDismissRequest = { expanded = false }
-                    ) {
-                        languages.forEach { language ->
-                            DropdownMenuItem(
-                                text = { Text(language) },
-                                onClick = {
-                                    onLanguageChange(language)
-                                    forceRecompose++
-                                    expanded = false
-                                }
-                            )
+                ////// Language selection
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(stringResource(R.string.select_language), style = MaterialTheme.typography.bodyLarge)
+
+                    Box {
+                        Button(onClick = { expanded = true }) {
+                            Text(selectedLanguage)
+                        }
+                        DropdownMenu(
+                            expanded = expanded,
+                            onDismissRequest = { expanded = false }
+                        ) {
+                            languages.forEach { language ->
+                                DropdownMenuItem(
+                                    text = { Text(language) },
+                                    onClick = {
+                                        onLanguageChange(language)
+                                        expanded = false
+                                    }
+                                )
+                            }
                         }
                     }
                 }

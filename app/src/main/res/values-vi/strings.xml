@@ -13,7 +13,7 @@
     <string name="open_drawer">Drawer</string>
     <string name="select_language">Chọn ngôn ngữ</string>
     <string name="dark_mode">Chế độ tối</string>
-    <string name="app_description">Từ điển Anh-Anh giúp bạn tìm nghĩa của từ.</string>
+    <string name="app_description">Ứng dụng từ điển Anh-Anh viết bằng Kotlin.</string>
     <string name="app_version">Phiên bản 1.0.0</string>
     <string name="version_info">Thông tin phiên bản</string>
     <string name="features">Tính năng ứng dụng</string>
@@ -31,4 +31,5 @@
     <string name="word_not_found">Không tìm thấy từ</string>
     <string name="network_error">Network error. Vui lòng kiểm tra lại kết nối Internet.</string>
     <string name="server_error">Không tìm thấy từ hoặc Có lỗi từ Server. Vui lòng thử lại sau.</string>
+    <string name="unexpected_error">Có lỗi xảy ra. Vui lòng thử lại.</string>
 </resources>

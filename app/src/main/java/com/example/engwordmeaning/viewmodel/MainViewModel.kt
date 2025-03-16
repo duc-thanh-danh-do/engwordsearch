@@ -1,18 +1,15 @@
 package com.example.engwordmeaning.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.content.Context
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.engwordmeaning.R
 import com.example.engwordmeaning.model.WordResponse
-import com.example.engwordmeaning.repository.ApiResult
 import com.example.engwordmeaning.repository.DictionaryRepository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = DictionaryRepository(application.applicationContext)
-
+class MainViewModel(private val repository: DictionaryRepository) : ViewModel() {
     private val _searchResult = MutableStateFlow<List<WordResponse>?>(null)
     val searchResult: StateFlow<List<WordResponse>?> = _searchResult
 
@@ -22,9 +19,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _loading = MutableStateFlow(false)
     val loading: StateFlow<Boolean> = _loading
 
-    fun searchWord(word: String) {
+    fun searchWord(word: String, context: Context) {
         if (word.isBlank()) {
-            _errorMessage.value = getApplication<Application>().getString(R.string.enter_word_to_search)
+            _errorMessage.value = context.getString(R.string.enter_word_to_search)
             _searchResult.value = null
             return
         }
@@ -34,17 +31,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             _errorMessage.value = null
             _searchResult.value = null
 
-            repository.searchWord(word).collect { result ->
+            repository.searchWord(word, context).collect { result ->
                 _loading.value = false
-                when (result) {
-                    is ApiResult.Success -> {
-                        _searchResult.value = result.data
-                        _errorMessage.value = null
-                    }
-                    is ApiResult.Error -> {
-                        _errorMessage.value = result.message
-                    }
-                }
+                result.onSuccess { _searchResult.value = it }
+                    .onFailure { _errorMessage.value = it.message }
             }
         }
     }
