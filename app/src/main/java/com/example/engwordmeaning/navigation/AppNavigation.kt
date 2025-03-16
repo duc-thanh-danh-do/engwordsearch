@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+
 import com.example.engwordmeaning.ui.FavoritesScreen
 import com.example.engwordmeaning.ui.MainScreen
 import com.example.engwordmeaning.ui.InfoScreen

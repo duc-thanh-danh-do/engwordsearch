@@ -27,6 +27,7 @@ fun DrawerComponent(
     scaffoldState: DrawerState,
     coroutineScope: CoroutineScope
 ) {
+
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
     val drawerWidth = screenWidth * (5f / 6f)
 
@@ -35,7 +36,7 @@ fun DrawerComponent(
             .width(drawerWidth)
             .fillMaxHeight()
     ) {
-        // ✅ Colored Header Section
+        //// Colored Header Section
         Column(
             modifier = Modifier
                 .fillMaxWidth()

@@ -7,6 +7,7 @@ data class WordResponse(
     val meanings: List<Meaning> = emptyList()
 )
 
+
 data class Phonetic(
     val text: String? = null,
     val audio: String? = null
