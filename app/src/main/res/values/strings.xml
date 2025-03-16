@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">EngWordMeaning</string>
+    <string name="search_hint">Enter an English word</string>
+    <string name="search_button">Search</string>
+    <string name="navigation">EngWordMeaning</string>
+    <string name="main_screen">Dictionary</string>
+    <string name="favorites_screen">Favorites</string>
+    <string name="favorites_content">Favorite words will appear here.</string>
+    <string name="settings_screen">Settings</string>
+    <string name="info_screen">About</string>
+    <string name="info_content">This app provides English word meanings.</string>
+    <string name="more_options">Drawer</string>
+    <string name="open_drawer">Drawer</string>
+    <string name="select_language">Select Language</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="app_description">An English-to-English dictionary for finding word meanings.</string>
+    <string name="app_version">Version 1.0.0</string>
+    <string name="version_info">Version Information</string>
+    <string name="features">App Features</string>
+    <string name="feature_search">Search word meanings</string>
+    <string name="feature_favorites">Save words to Favorites</string>
+    <string name="feature_dark_mode">Enable Dark Mode</string>
+    <string name="feature_language_switch">Switch app language (English or Vietnamese)</string>
+    <string name="api_source">Source of API</string>
+    <string name="api_url">https://api.dictionaryapi.dev/api/v2/entries/en/{word}</string>
+    <string name="credits">Contact</string>
+    <string name="contact_info">Developed by [Bar-t-t-tender]\nFor support, contact: ******@*******.com</string>
+
+    // api error
+    <string name="enter_word_to_search">Please enter a word to search.</string>
+    <string name="word_not_found">Word not found.</string>
+    <string name="network_error">Network error. Please check your internet connection.</string>
+    <string name="server_error">Word not found or Server error. Please try again later.</string>
 </resources>

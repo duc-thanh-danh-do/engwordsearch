@@ -10,11 +10,26 @@ import com.example.engwordmeaning.ui.InfoScreen
 import com.example.engwordmeaning.ui.SettingsScreen
 
 @Composable
-fun AppNavigation(navController: NavHostController) {
+fun AppNavigation(
+    navController: NavHostController,
+    isDarkMode: Boolean,
+    onThemeChange: (Boolean) -> Unit,
+    selectedLanguage: String,
+    onLanguageChange: (String) -> Unit,
+    key: Int
+) {
     NavHost(navController = navController, startDestination = "main") {
         composable("main") { MainScreen(navController) }
         composable("favorites") { FavoritesScreen(navController) }
         composable("info") { InfoScreen(navController) }
-        composable("settings") { SettingsScreen(navController) }
+        composable("settings") {
+            SettingsScreen(
+                navController,
+                isDarkMode,
+                onThemeChange,
+                selectedLanguage,
+                onLanguageChange
+            )
+        }
     }
 }

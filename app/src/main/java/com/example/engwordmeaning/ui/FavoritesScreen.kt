@@ -8,8 +8,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.engwordmeaning.ui.components.DrawerComponent
 import com.example.engwordmeaning.ui.components.TopAppBarComponent
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

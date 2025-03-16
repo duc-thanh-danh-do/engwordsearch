@@ -11,7 +11,6 @@ interface DictionaryApi {
     suspend fun searchWord(@Path("word") word: String): List<WordResponse>
 }
 
-// ✅ Updated Singleton instance (100% Kotlin)
 object RetrofitInstance {
     val api: DictionaryApi by lazy {
         Retrofit.Builder()
